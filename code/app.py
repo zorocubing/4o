@@ -1,34 +1,21 @@
-import sys
-
-from PySide6.QtWidgets import (
-    QApplication,
-    QMainWindow,
-    QLabel
-)
+from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QPushButton
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.label = QLabel("Click in this window!")
-        self.setCentralWidget(self.label)
-        self.setMouseTracking(True)
-        self.label.setMouseTracking(True)
+        self.setWindowTitle("4o")
+        self.resize(400, 600)
 
-    def mouseMoveEvent(self, e):
-        self.label.setText("mouseMoveEvent")
+        button = QPushButton("Open File")
+        self.setCentralWidget(button)
+        button.clicked.connect(self.open_folder)
 
-    def mousePressEvent(self, e):
-        self.label.setText("mousePressEvent")
+    def open_folder(self):
+        folder = QFileDialog.getExistingDirectory(self, "Select Folder", "")
+        print(f"Selected file: {folder}")
 
-    def mouseReleaseEvent(self, e):
-        self.label.setText("mouseReleaseEvent")
-
-    def mouseDoubleClickEvent(self, e):
-        self.label.setText("mouseDoubleClickEvent")
-
-
-app = QApplication(sys.argv)
+app = QApplication([])
 
 window = MainWindow()
 window.show()
