@@ -1,15 +1,16 @@
 from PySide6.QtWidgets import QWidget, QApplication, QMainWindow, QFileDialog, QPushButton, QLabel, QDialog, QVBoxLayout, QDialogButtonBox
+
 class ConfirmDialog(QDialog):
-    def __init__(self):
+    def __init__(self,  parent=None):
         super().__init__()
 
-        self.setWindowTitle("Confirm")
+        self.setWindowTitle("Confirmation")
         self.resize(100, 100)
         btn = QDialogButtonBox(QDialogButtonBox.Yes | QDialogButtonBox.No)
         btn.accepted.connect(self.accept)
         btn.rejected.connect(self.reject)
         layout = QVBoxLayout()
-        layout.addWidget(QLabel("   Do you want to proceed?"))
+        layout.addWidget(QLabel("   Do you want to proceed? "))
         layout.addWidget(btn)
         self.setLayout(layout)        
 
@@ -27,9 +28,13 @@ class MainWindow(QMainWindow):
 
     def open_folder(self):
         folder = QFileDialog.getExistingDirectory(self, "Select Folder", "")
-        print(f"Selected folder: {folder}")
-        dlg = ConfirmDialog()
-        dlg.exec()
+        if folder != "":
+            print(f"Selected folder: {folder}")
+            dlg = ConfirmDialog(self)
+            dlg.exec()
+        else:
+            print("No folder selected")
+        
         
         
 
