@@ -1,5 +1,9 @@
+import os
+import shutil
 from PySide6.QtWidgets import QWidget, QApplication, QMainWindow, QFileDialog, QPushButton, QLabel, QDialog, QVBoxLayout, QDialogButtonBox
 from PySide6.QtGui import QIcon
+
+selected_folder = None
 
 
 class ConfirmDialog(QDialog):
@@ -16,6 +20,10 @@ class ConfirmDialog(QDialog):
         layout.addWidget(QLabel("   Do you want to proceed? "))
         layout.addWidget(btn)
         self.setLayout(layout)     
+
+    def accept(self):
+        # Move files to appropriate folders
+        super().accept()
 
     def setIcon(self):
         icon = QIcon('4o_icon.png')
@@ -39,7 +47,9 @@ class MainWindow(QMainWindow):
         
 
     def openFolder(self):
+        global selected_folder
         folder = QFileDialog.getExistingDirectory(self, "Select Folder", "")
+        selected_folder = folder
         if folder != "":
             print(f"Selected folder: {folder}")
             dlg = ConfirmDialog(self)
