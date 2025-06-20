@@ -4,7 +4,7 @@ from PySide6.QtWidgets import QWidget, QApplication, QMainWindow, QFileDialog, Q
 from PySide6.QtGui import QIcon
 
 selected_folder = None
-   
+
 
 class ConfirmDialog(QDialog):
     def __init__(self, parent=None):
@@ -66,7 +66,7 @@ class ConfirmDialog(QDialog):
         super().accept()
 
     def setIcon(self):
-        icon = QIcon('4o_icon.png')
+        icon = QIcon("4o_icon.ico")
         self.setWindowIcon(icon)
 
 
@@ -83,7 +83,7 @@ class MainWindow(QMainWindow):
         button.clicked.connect(self.openFolder)
 
     def setIcon(self):
-        icon = QIcon('4o_icon.png')
+        icon = QIcon("4o_icon.ico")
         self.setWindowIcon(icon)
         
 
