@@ -15,15 +15,15 @@ class ConfirmDialog(QDialog):
         self.setWindowTitle("Confirmation")
         icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon.ico")
         self.setWindowIcon(QIcon(icon_path))
-
         self.setBaseSize(100, 100)
 
         btn = QDialogButtonBox(QDialogButtonBox.Yes | QDialogButtonBox.No)
         btn.accepted.connect(self.accept)
         btn.rejected.connect(self.reject)
+        btn.setCenterButtons(True)
 
         layout = QVBoxLayout()
-        layout.addWidget(QLabel("   Do you want to proceed? "))
+        layout.addWidget(QLabel(f"Do you want to organize {selected_folder}?"))
         layout.addWidget(btn)
         self.setLayout(layout)
 
@@ -73,7 +73,25 @@ class ConfirmDialog(QDialog):
         print("File organization complete!")
         super().accept()
 
-
+class InstructionsDialog(QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("Instructions")
+        icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon.ico")
+        self.setWindowIcon(QIcon(icon_path))
+        ok_button = QDialogButtonBox(QDialogButtonBox.Ok)
+        ok_button.setCenterButtons(True)
+        ok_button.accepted.connect(self.accept)
+        layout = QVBoxLayout(self)
+        layout.addWidget(QLabel("How to use the application:"))
+        layout.addWidget(QLabel("1. Click 'Open Folder' to select a folder. \n"
+                     "2. After selecting, a confirmation window will appear. \n"
+                     "3. Click 'Yes' to organize files into respective folders. \n"
+                     "4. Click 'No' to cancel the operation. \n"
+                     "5. The application will create subfolders for Images, Videos, Documents, Code, Audio, and Others. \n"
+                     "6. Files will be moved to their respective folders based on their extensions."))
+        layout.addWidget(ok_button)
+        self.setLayout(layout)
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -104,8 +122,7 @@ class MainWindow(QMainWindow):
 
 
     def showInstructions(self):
-        QMessageBox.about(self.window(), "Instructions", "1. Click 'Open Folder' to select a folder. \n2. After selecting, a confirmation dialog will appear. \n3. Click 'Yes' to organize files into respective folders. \n4. Click 'No' to cancel the operation. \n5. The application will create subfolders for Images, Videos, Documents, Code, Audio, and Others. \n6. Files will be moved to their respective folders based on their extensions.")
-
+        InstructionsDialog(self).exec()
         
 
     def openFolder(self):
