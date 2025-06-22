@@ -1,7 +1,7 @@
 import os
 import shutil
-from PySide6.QtWidgets import QWidget, QApplication, QMainWindow, QFileDialog, QPushButton, QLabel, QDialog, QVBoxLayout, QDialogButtonBox
-from PySide6.QtGui import QIcon
+from PySide6.QtWidgets import *
+from PySide6.QtGui import *
 
 selected_folder = None
 
@@ -28,8 +28,8 @@ class ConfirmDialog(QDialog):
         image_extension = (".jpg", ".jpeg", ".png", ".gif")
         video_extension = (".mp4", ".mov", ".webm", ".mkv")
         document_extension = (".doc", ".docx", ".odt", ".pdf", ".pptx", ".gslides")
-        audio_extension = (".mp3", ".wav", ".aiff", ".flac", ".aac")
         code_extension = (".py", ".js", ".html", ".css")
+        audio_extension = (".mp3", ".wav", ".aiff", ".flac", ".aac")
 
         global selected_folder
         ddir = selected_folder
@@ -74,17 +74,30 @@ class ConfirmDialog(QDialog):
         self.setWindowIcon(icon)
 
 
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
         self.setWindowTitle("4o")
         self.setIcon()
-        self.resize(200, 200)
+        self.resize(200, 250)
+
 
         button = QPushButton("Open Folder")
-        self.setCentralWidget(button)
+        button.setToolTip("Click to select a folder for file organization")
+        #self.setCentralWidget(button)
         button.clicked.connect(self.openFolder)
+
+        instructions = QPushButton("Instructions")
+        instructions.setToolTip("Click to open instructions")
+        self.setCentralWidget(instructions)
+        instructions.clicked.connect(self.showInstructions)
+
+
+    def showInstructions(self):
+        QMessageBox.about(self.window(), "Instructions", "1. Click 'Open Folder' to select a folder. \n2. After selecting, a confirmation dialog will appear. \n3. Click 'Yes' to organize files into respective folders. \n4. Click 'No' to cancel the operation. \n5. The application will create subfolders for Images, Videos, Documents, Code, Audio, and Others. \n6. Files will be moved to their respective folders based on their extensions.")
+
 
     def setIcon(self):
         icon = QIcon("4o_icon.ico")
