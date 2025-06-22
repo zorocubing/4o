@@ -75,7 +75,7 @@ class ConfirmDialog(QDialog):
         dlg = QDialog(self)
         dlg.setWindowTitle("Success")
         layout = QVBoxLayout(dlg)
-        layout.addWidget(QLabel("Files organization complete!"))
+        layout.addWidget(QLabel("Files organization complete! \n" "Check your Files Explorer app!"))
         icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon.ico")
         dlg.setWindowIcon(QIcon(icon_path))
         dlg.exec()
@@ -97,7 +97,8 @@ class InstructionsDialog(QDialog):
                      "3. Click 'Yes' to organize files into respective folders. \n"
                      "4. Click 'No' to cancel the operation. \n"
                      "5. The application will create subfolders for Images, Videos, Documents, Code, Audio, and Others. \n"
-                     "6. Files will be moved to their respective folders based on their extensions."))
+                     "6. Files will be moved to their respective folders based on their extensions. \n"
+                     "7. Check the organized output in your Files Explorer app!"))
         layout.addWidget(ok_button)
         self.setLayout(layout)
 
