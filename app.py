@@ -71,6 +71,14 @@ class ConfirmDialog(QDialog):
                 print(f"Error moving {file}: {e}")
 
         print("File organization complete!")
+        ConfirmDialog.close(self)
+        dlg = QDialog(self)
+        dlg.setWindowTitle("Success")
+        layout = QVBoxLayout(dlg)
+        layout.addWidget(QLabel("Files organization complete!"))
+        icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon.ico")
+        dlg.setWindowIcon(QIcon(icon_path))
+        dlg.exec()
         super().accept()
 
 class InstructionsDialog(QDialog):
