@@ -1,7 +1,9 @@
+import sys
 import os
 import shutil
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
+from PySide6.QtCore import *
 
 selected_folder = None
 
@@ -11,8 +13,10 @@ class ConfirmDialog(QDialog):
         super().__init__(parent)
 
         self.setWindowTitle("Confirmation")
-        self.setIcon()
-        self.resize(100, 100)
+        icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon.ico")
+        self.setWindowIcon(QIcon(icon_path))
+
+        self.setBaseSize(100, 100)
 
         btn = QDialogButtonBox(QDialogButtonBox.Yes | QDialogButtonBox.No)
         btn.accepted.connect(self.accept)
@@ -69,10 +73,6 @@ class ConfirmDialog(QDialog):
         print("File organization complete!")
         super().accept()
 
-    def setIcon(self):
-        icon = QIcon("4o_icon.ico")
-        self.setWindowIcon(icon)
-
 
 
 class MainWindow(QMainWindow):
@@ -80,28 +80,32 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.setWindowTitle("4o")
-        self.setIcon()
-        self.resize(200, 250)
+        icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon.ico")
+        self.setWindowIcon(QIcon(icon_path))
 
+        self.resize(QSize(200, 200))
 
+        layout = QVBoxLayout()
         button = QPushButton("Open Folder")
+        button.setFixedSize(QSize(200, 150))
         button.setToolTip("Click to select a folder for file organization")
-        #self.setCentralWidget(button)
         button.clicked.connect(self.openFolder)
+        layout.addWidget(button)
 
         instructions = QPushButton("Instructions")
         instructions.setToolTip("Click to open instructions")
-        self.setCentralWidget(instructions)
+        instructions.setFixedSize(QSize(200, 50))
         instructions.clicked.connect(self.showInstructions)
+        layout.addWidget(instructions)
+
+        w = QWidget()
+        w.setLayout(layout)
+        self.setCentralWidget(w)
 
 
     def showInstructions(self):
         QMessageBox.about(self.window(), "Instructions", "1. Click 'Open Folder' to select a folder. \n2. After selecting, a confirmation dialog will appear. \n3. Click 'Yes' to organize files into respective folders. \n4. Click 'No' to cancel the operation. \n5. The application will create subfolders for Images, Videos, Documents, Code, Audio, and Others. \n6. Files will be moved to their respective folders based on their extensions.")
 
-
-    def setIcon(self):
-        icon = QIcon("4o_icon.ico")
-        self.setWindowIcon(icon)
         
 
     def openFolder(self):
