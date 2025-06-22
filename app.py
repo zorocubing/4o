@@ -27,7 +27,7 @@ class ConfirmDialog(QDialog):
         # Define file extensions
         image_extension = (".jpg", ".jpeg", ".png", ".gif")
         video_extension = (".mp4", ".mov", ".webm", ".mkv")
-        document_extension = (".doc", ".docx", ".odt", ".pdf", ".pptx", ".gslides")
+        document_extension = (".doc", ".docx", ".odt", ".pdf")
         code_extension = (".py", ".js", ".html", ".css")
         audio_extension = (".mp3", ".wav", ".aiff", ".flac", ".aac")
 
