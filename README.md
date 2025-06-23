@@ -19,3 +19,4 @@
 2. Graphical User Interface
 3. Acknowledge and Confirm dialog
 4. Success dialog
+5. Blocking access from system files for safety purposes
