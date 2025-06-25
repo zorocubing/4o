@@ -13,7 +13,7 @@ class ConfirmDialog(QDialog):
         super().__init__(parent)
 
         self.setWindowTitle("Confirmation")
-        icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon.ico")
+        icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon_high.ico")
         self.setWindowIcon(QIcon(icon_path))
         self.setBaseSize(100, 100)
 
@@ -29,7 +29,7 @@ class ConfirmDialog(QDialog):
 
     def accept(self):
         # Define file extensions
-        image_extension = (".jpg", ".jpeg", ".png", ".gif")
+        image_extension = (".jpg", ".jpeg", ".png", ".gif", ".ico")
         video_extension = (".mp4", ".mov", ".webm", ".mkv")
         document_extension = (".doc", ".docx", ".odt", ".pdf", ".txt", ".pptx", ".xlsx", ".csv")
         code_extension = (".py", ".js", ".html", ".css")
@@ -81,7 +81,7 @@ class ConfirmDialog(QDialog):
         layout.addWidget(QLabel("Files organization complete! \n" "Check your Files Explorer app!"))
         layout.addWidget(success_btn)
         dlg.setLayout(layout)
-        icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon.ico")
+        icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon_high.ico")
         dlg.setWindowIcon(QIcon(icon_path))
         dlg.exec()
         super().accept()
@@ -90,7 +90,7 @@ class InstructionsDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setWindowTitle("Instructions")
-        icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon.ico")
+        icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon_high.ico")
         self.setWindowIcon(QIcon(icon_path))
         ok_button = QDialogButtonBox(QDialogButtonBox.Ok)
         ok_button.setCenterButtons(True)
@@ -112,7 +112,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.setWindowTitle("4o")
-        icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon.ico")
+        icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon_high.ico")
         self.setWindowIcon(QIcon(icon_path))
 
         self.resize(QSize(200, 200))
