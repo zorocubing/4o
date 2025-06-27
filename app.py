@@ -114,19 +114,18 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("4o")
         icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon_high.ico")
         self.setWindowIcon(QIcon(icon_path))
-
-        self.resize(QSize(200, 200))
+        self.setMaximumSize(QSize(200, 200))
 
         layout = QVBoxLayout()
         button = QPushButton("Open Folder")
-        button.setFixedSize(QSize(200, 150))
+        button.setMinimumSize(QSize(200, 150))
         button.setToolTip("Click to select a folder for file organization")
         button.clicked.connect(self.openFolder)
         layout.addWidget(button)
 
         instructions = QPushButton("Instructions")
+        instructions.setMinimumSize(QSize(200, 50))
         instructions.setToolTip("Click to open instructions")
-        instructions.setFixedSize(QSize(200, 50))
         instructions.clicked.connect(self.showInstructions)
         layout.addWidget(instructions)
 
