@@ -119,7 +119,7 @@ class MainWindow(QMainWindow):
         layout = QVBoxLayout()
         button = QPushButton("Open Folder")
         button.setMinimumSize(QSize(200, 150))
-        button.setToolTip("Click to select a folder for file organization")
+        button.setToolTip("Click to select a folder for files organization")
         button.clicked.connect(self.openFolder)
         layout.addWidget(button)
 
