@@ -24,6 +24,7 @@ class ConfirmDialog(QDialog):
 
         layout = QVBoxLayout()
         layout.addWidget(QLabel(f"Do you want to organize {selected_folder}?"))
+        layout.addWidget(QLabel("Note: This is irreversible."))
         layout.addWidget(btn)
         self.setLayout(layout)
 
