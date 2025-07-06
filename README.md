@@ -20,3 +20,6 @@
 - Acknowledge and Confirm dialog
 - Success dialog
 - Blocking access from system files for safety purposes
+
+#
+Built with love ❤️
