@@ -1,0 +1,44 @@
+body {
+    font-family: 'Jersey 15', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-weight: 400;
+    font-style: bold;
+}
+h2 {
+    font-weight: 400;
+    font-style: normal;
+    color: #333;
+}
+h3 {
+    font-weight: 400;
+    font-style: normal;
+    color: #666;
+}
+a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #7274FF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+a:hover {
+    background-color: #6163ff;
+}
+
+@media only screen and (max-width: 400px) {
+    .card {
+        width: 90%;
+        height: 90%;
+    }
+}
