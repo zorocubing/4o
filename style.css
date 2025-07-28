@@ -23,7 +23,7 @@ h3 {
     font-style: normal;
     color: #666;
 }
-a {
+a.button {
     display: inline-block;
     padding: 10px 20px;
     background-color: #7274FF;
@@ -32,8 +32,15 @@ a {
     border-radius: 5px;
     transition: background-color 0.3s;
 }
-a:hover {
+a.button:hover {
     background-color: #6163ff;
+}
+
+a {
+    color: #6163ff;
+    text-decoration: none;
+    background: none;
+    padding: 0;
 }
 
 @media only screen and (max-width: 400px) {
