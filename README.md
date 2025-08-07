@@ -2,7 +2,7 @@
 4o is a files organizer (Windows) desktop app.
 
 # Product photo
-<img width="2560" height="1600" alt="Screenshot 2025-07-27 173040" src="https://github.com/user-attachments/assets/2e825f64-56f1-48fa-a001-76e0e663b57b" />
+<img width="2064" height="1337" alt="4o_product_photo" src="https://github.com/user-attachments/assets/7f7ee28e-9df2-4946-bd2f-85ab8190bf0e" />
 
 
 
