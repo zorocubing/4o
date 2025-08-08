@@ -1,0 +1,41 @@
+body {
+    font-family: 'Jersey 15', sans-serif;
+    text-align: left;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+h1 {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    gap: 10px;
+    font-weight: 400;
+    font-style: bold;
+    font-size: 2.5rem;
+}
+h2 {
+    font-weight: 400;
+    font-style: normal;
+    color: #333;
+}
+a {
+    color: #7274FF;
+    text-decoration: none;
+    background: none;
+    padding: 0;
+}
+a:hover {
+    color: #6163ff;
+}
+.hero {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+    padding: 60px;
+
+    justify-content:center;
+    gap: 17.5rem;
+    align-items:center;
+}
