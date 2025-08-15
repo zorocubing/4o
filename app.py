@@ -4,16 +4,16 @@ import shutil
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
 from PySide6.QtCore import *
+import files
 
 selected_folder = None
-
 
 class ConfirmDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
 
         self.setWindowTitle("Confirmation")
-        icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon_high.ico")
+        icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon.ico")
         self.setWindowIcon(QIcon(icon_path))
         self.setBaseSize(100, 100)
 
@@ -29,49 +29,7 @@ class ConfirmDialog(QDialog):
         self.setLayout(layout)
 
     def accept(self):
-        # Define file extensions
-        image_extension = (".jpg", ".jpeg", ".png", ".gif", ".ico")
-        video_extension = (".mp4", ".mov", ".webm", ".mkv")
-        document_extension = (".doc", ".docx", ".odt", ".pdf", ".txt", ".pptx", ".xlsx", ".csv")
-        code_extension = (".py", ".js", ".html", ".css")
-        audio_extension = (".mp3", ".wav", ".aiff", ".flac", ".aac")
-
-        global selected_folder
-        ddir = selected_folder
-
-        subdirectories = ["Images", "Videos", "Documents", "Code", "Audio", "Others"]
-        for subdirectory in subdirectories:
-            path = os.path.join(ddir, subdirectory)
-            if not os.path.exists(path):
-                os.makedirs(path)
-
-        def get_images(file): return os.path.splitext(file)[1].lower() in image_extension
-        def get_videos(file): return os.path.splitext(file)[1].lower() in video_extension
-        def get_document(file): return os.path.splitext(file)[1].lower() in document_extension
-        def get_code(file): return os.path.splitext(file)[1].lower() in code_extension
-        def get_audio(file): return os.path.splitext(file)[1].lower() in audio_extension
-
-        for file in os.listdir(ddir):
-            file_path = os.path.join(ddir, file)
-            if os.path.isdir(file_path):
-                continue
-            try:
-                if get_images(file):
-                    shutil.move(file_path, os.path.join(ddir, "Images", file))
-                elif get_videos(file):
-                    shutil.move(file_path, os.path.join(ddir, "Videos", file))
-                elif get_document(file):
-                    shutil.move(file_path, os.path.join(ddir, "Documents", file))
-                elif get_code(file):
-                    shutil.move(file_path, os.path.join(ddir, "Code", file))
-                elif get_audio(file):
-                    shutil.move(file_path, os.path.join(ddir, "Audio", file))
-                else:
-                    shutil.move(file_path, os.path.join(ddir, "Others", file))
-            except Exception as e:
-                print(f"Error moving {file}: {e}")
-
-        print("File organization complete!")
+        files.organize_files(selected_folder)
         ConfirmDialog.close(self)
         dlg = QDialog(self)
         dlg.setWindowTitle("Success")
@@ -82,7 +40,7 @@ class ConfirmDialog(QDialog):
         layout.addWidget(QLabel("Files organization complete! \n" "Check your Files Explorer app!"))
         layout.addWidget(success_btn)
         dlg.setLayout(layout)
-        icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon_high.ico")
+        icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon.ico")
         dlg.setWindowIcon(QIcon(icon_path))
         dlg.exec()
         super().accept()
@@ -91,7 +49,7 @@ class InstructionsDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setWindowTitle("Instructions")
-        icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon_high.ico")
+        icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon.ico")
         self.setWindowIcon(QIcon(icon_path))
         ok_button = QDialogButtonBox(QDialogButtonBox.Ok)
         ok_button.setCenterButtons(True)
@@ -113,7 +71,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.setWindowTitle("4o")
-        icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon_high.ico")
+        icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon.ico")
         self.setWindowIcon(QIcon(icon_path))
         self.setMaximumSize(QSize(200, 200))
 
@@ -157,12 +115,3 @@ class MainWindow(QMainWindow):
                 print("User confirmed file organization.")
         else:
             print("No folder selected.")
-        
-        
-app = QApplication([])
-
-window = MainWindow()
-window.show()
-
-app.exec()
-
