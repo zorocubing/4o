@@ -54,3 +54,12 @@ a {
     background: none;
     padding: 0;
 }
+
+.video-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 20px 0;
+}
