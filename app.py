@@ -66,6 +66,20 @@ class InstructionsDialog(QDialog):
         layout.addWidget(ok_button)
         self.setLayout(layout)
 
+class RedoDialog(QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("Redo")
+        icon_path = os.path.join(getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__))), "4o_icon.ico")
+        self.setWindowIcon(QIcon(icon_path))
+        ok_button = QDialogButtonBox(QDialogButtonBox.Ok)
+        ok_button.setCenterButtons(True)
+        ok_button.accepted.connect(self.accept)
+        layout = QVBoxLayout(self)
+        layout.addWidget(QLabel("This feature is coming soon!"))
+        layout.addWidget(ok_button)
+        self.setLayout(layout)
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -76,6 +90,9 @@ class MainWindow(QMainWindow):
         self.setMaximumSize(QSize(200, 200))
 
         layout = QVBoxLayout()
+        hlayout = QHBoxLayout()
+
+
         button = QPushButton("Open Folder")
         button.setMinimumSize(QSize(200, 150))
         button.setToolTip("Click to select a folder for files organization")
@@ -83,15 +100,36 @@ class MainWindow(QMainWindow):
         layout.addWidget(button)
 
         instructions = QPushButton("Instructions")
-        instructions.setMinimumSize(QSize(200, 50))
+        instructions.setMinimumSize(QSize(100, 50))
         instructions.setToolTip("Click to open instructions")
         instructions.clicked.connect(self.showInstructions)
-        layout.addWidget(instructions)
+        hlayout.addWidget(instructions)
+
+        redo = QPushButton("Redo")
+        redo.setMinimumSize(QSize(100, 50))
+        redo.setStyleSheet("""
+        QPushButton {
+            background-color: #c9184a;
+        }
+        QPushButton:hover {
+            background-color: #b71744;
+            border-radius: 5px;
+        }
+        """)
+        redo.setToolTip("Click to redo the last operation")
+        redo.clicked.connect(self.redo)
+        hlayout.addWidget(redo)
+
+        layout.addLayout(hlayout)
+        self.setwatermark = QLabel("v1.3 Beta")
+        self.setwatermark.setAlignment(Qt.AlignCenter)
+        self.setwatermark.setStyleSheet("color: gray; font-size: 10px;")
+        self.setwatermark.setMinimumSize(QSize(200, 10))
+        layout.addWidget(self.setwatermark)
 
         w = QWidget()
         w.setLayout(layout)
         self.setCentralWidget(w)
-
 
     def showInstructions(self):
         InstructionsDialog(self).exec()
@@ -115,3 +153,6 @@ class MainWindow(QMainWindow):
                 print("User confirmed file organization.")
         else:
             print("No folder selected.")
+
+    def redo(self):
+        RedoDialog(self).exec()
