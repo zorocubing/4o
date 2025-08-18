@@ -99,13 +99,13 @@ class MainWindow(QMainWindow):
         button.clicked.connect(self.openFolder)
         layout.addWidget(button)
 
-        instructions = QPushButton("Instructions")
+        instructions = QPushButton("ℹ️")
         instructions.setMinimumSize(QSize(100, 50))
         instructions.setToolTip("Click to open instructions")
         instructions.clicked.connect(self.showInstructions)
         hlayout.addWidget(instructions)
 
-        redo = QPushButton("Redo")
+        redo = QPushButton("↩️")
         redo.setMinimumSize(QSize(100, 50))
         redo.setStyleSheet("""
         QPushButton {
