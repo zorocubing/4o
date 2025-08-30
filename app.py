@@ -90,7 +90,6 @@ class MainWindow(QMainWindow):
         self.setMaximumSize(QSize(200, 200))
 
         layout = QVBoxLayout()
-        hlayout = QHBoxLayout()
 
 
         button = QPushButton("Open Folder")
@@ -99,29 +98,13 @@ class MainWindow(QMainWindow):
         button.clicked.connect(self.openFolder)
         layout.addWidget(button)
 
-        instructions = QPushButton("ℹ️")
+        instructions = QPushButton("Instructions")
         instructions.setMinimumSize(QSize(100, 50))
         instructions.setToolTip("Click to open instructions")
         instructions.clicked.connect(self.showInstructions)
-        hlayout.addWidget(instructions)
+        layout.addWidget(instructions)
 
-        redo = QPushButton("↩️")
-        redo.setMinimumSize(QSize(100, 50))
-        redo.setStyleSheet("""
-        QPushButton {
-            background-color: #c9184a;
-        }
-        QPushButton:hover {
-            background-color: #b71744;
-            border-radius: 5px;
-        }
-        """)
-        redo.setToolTip("Click to redo the last operation")
-        redo.clicked.connect(self.redo)
-        hlayout.addWidget(redo)
-
-        layout.addLayout(hlayout)
-        self.setwatermark = QLabel("v1.3 Beta")
+        self.setwatermark = QLabel("v1.2")
         self.setwatermark.setAlignment(Qt.AlignCenter)
         self.setwatermark.setStyleSheet("color: gray; font-size: 10px;")
         self.setwatermark.setMinimumSize(QSize(200, 10))
