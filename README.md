@@ -2,8 +2,7 @@
 4o is a files organizer (Windows) desktop app.
 
 # Product photo
-<img width="2064" height="1161" alt="4o_product_photo" src="https://github.com/user-attachments/assets/6faee94a-ce07-4d58-ab66-57d56e577d5d" />
-
+<img width="2350" height="1398" alt="4o_product_photo" src="https://github.com/user-attachments/assets/6ddc668d-8ffe-4ed2-b3a7-c0e1d1435628" />
 
 # Instructions
 1. Click 'Open Folder' to select a folder.
